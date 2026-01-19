@@ -213,39 +213,26 @@ function handleYes() {
     }, 500);
 }
 
-// Interactive "No" button that runs away
-function handleNo(button) {
-    const padding = 50;
-    const maxX = window.innerWidth - button.offsetWidth - padding;
-    const maxY = window.innerHeight - button.offsetHeight - padding;
+// Handle Maybe Later click (Shows Modal)
+function handleNo() {
+    const modal = document.getElementById('noModal');
+    modal.style.display = 'flex';
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
 
-    // Move to a random position
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
-    button.style.position = 'fixed';
-    button.style.left = Math.max(padding, randomX) + 'px';
-    button.style.top = Math.max(padding, randomY) + 'px';
-    button.style.zIndex = '2000';
-    button.style.transition = 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
-
-    // Update text with cute discouraging messages
-    const messages = [
-        'Are you sure? 🥺',
-        'Reconsider... 💔',
-        'One more chance? 🙏',
-        'Pretty please? 💕',
-        'Wait, no! 😊',
-        'Think again! ✨',
-        'Try the other one! 😉',
-        'Wrong button! 🛑'
-    ];
-    button.textContent = messages[Math.floor(Math.random() * messages.length)];
-
-    // Make the YES button grow slightly larger each time NO is attempted
+    // Still grow the YES button for fun
     const yesBtn = document.getElementById('btn-yes');
     const currentScale = yesBtn.style.transform ? parseFloat(yesBtn.style.transform.replace('scale(', '')) : 1;
-    yesBtn.style.transform = `scale(${currentScale + 0.05})`;
+    yesBtn.style.transform = `scale(${currentScale + 0.1})`;
+}
+
+function closeModal() {
+    const modal = document.getElementById('noModal');
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
 }
 
 // Live Countdown Timer
