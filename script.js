@@ -42,7 +42,7 @@ END:VCALENDAR`;
 
     // Visual feedback
     const btn = document.querySelector('.calendar-btn');
-    btn.innerHTML = '✅ All 8 Days Added to Calendar!';
+    btn.innerHTML = '✅ All 8 Days Added! ✨';
     btn.classList.add('success');
 
     // Attempt to notify for all week
@@ -129,7 +129,7 @@ function handleScroll() {
 
 // Celebrate each day with effects
 function celebrateDay(button, day) {
-    button.innerHTML = '✨ Celebrated! ✨';
+    button.innerHTML = '✨ Good Boy ✨';
     button.style.background = 'linear-gradient(135deg, #4CAF50, #2E7D32)';
     button.disabled = true;
 
