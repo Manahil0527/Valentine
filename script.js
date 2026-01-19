@@ -143,46 +143,54 @@ function celebrateDay(button, day) {
 
 function createCelebrationHeart(element) {
     const heart = document.createElement('div');
-    const hearts = ['❤️', '✨', '💖', '🌸'];
+    const hearts = ['❤️', '✨', '💖', '🌸', '🌹'];
     heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
     heart.style.position = 'fixed';
-    heart.style.fontSize = (Math.random() * 10 + 20) + 'px';
+    heart.style.fontSize = (Math.random() * 15 + 20) + 'px';
     heart.style.pointerEvents = 'none';
     heart.style.zIndex = '1000';
 
     const rect = element.getBoundingClientRect();
-    heart.style.left = rect.left + rect.width / 2 + 'px';
-    heart.style.top = rect.top + 'px';
+    const startX = rect.left + rect.width / 2;
+    const startY = rect.top;
+
+    heart.style.left = '0px';
+    heart.style.top = '0px';
+    heart.style.transform = `translate3d(${startX}px, ${startY}px, 0)`;
 
     document.body.appendChild(heart);
 
     const angle = (Math.random() * Math.PI) + Math.PI; // Upwards spread
-    const velocity = 3 + Math.random() * 5;
-    let x = rect.left + rect.width / 2;
-    let y = rect.top;
+    const velocity = 4 + Math.random() * 6;
+    let x = startX;
+    let y = startY;
+    let xVel = Math.cos(angle) * (velocity * 0.5);
+    let yVel = Math.sin(angle) * velocity;
+    const gravity = 0.15;
     let opacity = 1;
     let rotation = Math.random() * 360;
+    const rotationSpeed = (Math.random() - 0.5) * 10;
 
     function animate() {
-        x += Math.cos(angle) * (velocity * 0.5);
-        y += Math.sin(angle) * velocity;
-        velocity *= 0.98; // Gravity/friction
+        x += xVel;
+        y += yVel;
+        yVel += gravity; // Gravity pull
         opacity -= 0.015;
-        rotation += 5;
+        rotation += rotationSpeed;
 
-        heart.style.left = x + 'px';
-        heart.style.top = y + 'px';
+        heart.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg)`;
         heart.style.opacity = opacity;
-        heart.style.transform = `rotate(${rotation}deg)`;
 
         if (opacity > 0) {
             requestAnimationFrame(animate);
         } else {
-            document.body.removeChild(heart);
+            if (heart.parentNode) {
+                document.body.removeChild(heart);
+            }
         }
     }
 
-    animate();
+    requestAnimationFrame(animate);
 }
 
 // Handle Yes button click
@@ -240,6 +248,31 @@ function handleNo(button) {
     yesBtn.style.transform = `scale(${currentScale + 0.05})`;
 }
 
+// Live Countdown Timer
+function updateCountdown() {
+    const targetDate = new Date("February 14, 2026 00:00:00").getTime();
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = String(days).padStart(2, '0');
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+        if (distance < 0) {
+            clearInterval(interval);
+            document.querySelector(".countdown-title").innerText = "Happy Valentine's Day! ❤️";
+            document.getElementById("countdown").style.display = "none";
+        }
+    }, 1000);
+}
+
 // Confetti effect
 function createConfetti() {
     const confetti = document.createElement('div');
@@ -290,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Prevent scrolling initially until journey starts
     document.body.style.overflow = 'hidden';
     createFloatingHearts();
+    updateCountdown();
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial check
 });
