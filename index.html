@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕 | A Journey of Love</title>
+    <meta name="description"
+        content="A beautiful and interactive 7-day journey leading to the most important question.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Floating hearts background -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <!-- First Page: The Proposal -->
+    <section class="intro-page" id="introPage">
+        <div class="intro-content">
+            <div class="kitkat-icon">🍫</div>
+            <h1 class="proposal-text">Sannan, will you be my valentine and give me one kitkat?</h1>
+            <p class="from-text">From Manahil...</p>
+            <button class="begin-btn" onclick="startJourney()">Begin Our Journey ✨</button>
+        </div>
+    </section>
+
+    <!-- Main Journey Container (initially hidden) -->
+    <div class="main-journey" id="mainJourney">
+        <div class="container">
+            <header>
+                <h1>A Journey to Your Heart</h1>
+                <p class="subtitle">Seven days of love, one beautiful question</p>
+            </header>
+
+            <div class="timeline">
+                <!-- Day 1: Rose Day -->
+                <div class="day-card left">
+                    <div class="day-icon">🌹</div>
+                    <div class="card-content" id="day-1">
+                        <div class="day-date">February 7</div>
+                        <h2 class="day-title">Rose Day</h2>
+                        <p class="day-description">Like a red rose symbolizes eternal love, my feelings for you bloom
+                            brighter each day. Will you accept this rose as the first step of our journey?</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'rose')">Accept the Rose 🌹</button>
+                    </div>
+                </div>
+
+                <!-- Day 2: Propose Day -->
+                <div class="day-card right">
+                    <div class="day-icon">💍</div>
+                    <div class="card-content" id="day-2">
+                        <div class="day-date">February 8</div>
+                        <h2 class="day-title">Propose Day</h2>
+                        <p class="day-description">Today, I gather all my courage to tell you what my heart has been
+                            whispering all along. You make every moment magical, and I want to be the reason behind your
+                            smile.</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'propose')">Hear My Heart 💕</button>
+                    </div>
+                </div>
+
+                <!-- Day 3: Chocolate Day -->
+                <div class="day-card left">
+                    <div class="day-icon">🍫</div>
+                    <div class="card-content" id="day-3">
+                        <div class="day-date">February 9</div>
+                        <h2 class="day-title">Chocolate Day</h2>
+                        <p class="day-description">Life with you is sweeter than the finest chocolate. Let me be the
+                            sweetness in your life, today and always.</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'chocolate')">Sweeten Our Bond
+                            🍫</button>
+                    </div>
+                </div>
+
+                <!-- Day 4: Teddy Day -->
+                <div class="day-card right">
+                    <div class="day-icon">🧸</div>
+                    <div class="card-content" id="day-4">
+                        <div class="day-date">February 10</div>
+                        <h2 class="day-title">Teddy Day</h2>
+                        <p class="day-description">Just like a teddy bear brings comfort and warmth, I want to be your
+                            safe place, your comfort, and your constant companion through every season of life.</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'teddy')">Embrace the Warmth 🧸</button>
+                    </div>
+                </div>
+
+                <!-- Day 5: Promise Day -->
+                <div class="day-card left">
+                    <div class="day-icon">🤝</div>
+                    <div class="card-content" id="day-5">
+                        <div class="day-date">February 11</div>
+                        <h2 class="day-title">Promise Day</h2>
+                        <p class="day-description">I promise to cherish you, support you, make you laugh on tough days,
+                            and celebrate every little victory with you. Will you let me keep these promises?</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'promise')">Accept My Promise 🤝</button>
+                    </div>
+                </div>
+
+                <!-- Day 6: Hug Day -->
+                <div class="day-card right">
+                    <div class="day-icon">🤗</div>
+                    <div class="card-content" id="day-6">
+                        <div class="day-date">February 12</div>
+                        <h2 class="day-title">Hug Day</h2>
+                        <p class="day-description">In your embrace, I find my home. Let me be the arms that comfort you,
+                            the presence that makes you feel safe and loved.</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'hug')">Feel the Warmth 🤗</button>
+                    </div>
+                </div>
+
+                <!-- Day 7: Kiss Day -->
+                <div class="day-card left">
+                    <div class="day-icon">💋</div>
+                    <div class="card-content" id="day-7">
+                        <div class="day-date">February 13</div>
+                        <h2 class="day-title">Kiss Day</h2>
+                        <p class="day-description">Every moment with you feels like magic. You make my heart skip a
+                            beat, and I dream of sharing a lifetime of beautiful moments with you.</p>
+                        <button class="day-action" onclick="celebrateDay(this, 'kiss')">Share the Magic 💋</button>
+                    </div>
+                </div>
+
+                <!-- Day 8: Valentine's Day -->
+                <div class="day-card right">
+                    <div class="day-icon">❤️</div>
+                    <div class="card-content" id="day-8">
+                        <div class="day-date">February 14</div>
+                        <h2 class="day-title">Valentine's Day</h2>
+                        <p class="day-description">After this beautiful journey together, there's one question left that
+                            holds all my hopes and dreams...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Question -->
+            <div class="final-question" id="final-question">
+                <h2>Will You Be My Valentine?</h2>
+                <p style="font-size: 1.3rem; color: #666; margin-bottom: 20px;">
+                    You've made every day of this journey special. Now, I'm asking you to make it official.
+                </p>
+                <div class="button-group">
+                    <button class="btn-yes" id="btn-yes" onclick="handleYes()">Yes! 💕</button>
+                    <button class="btn-no" id="btn-no" onmouseover="handleNo(this)">Maybe Later...</button>
+                </div>
+                <div class="response-message" id="responseMessage">
+                    <h3>🎉 You've Made Me the Happiest! 🎉</h3>
+                    <p>This is the beginning of our beautiful story together. Thank you for saying yes! Happy
+                        Valentine's Day, my love! ❤️</p>
+                    <div class="rsvp-actions">
+                        <button class="calendar-btn" onclick="addToCalendar()">📅 Add to My Calendar</button>
+                        <p class="notification-status" id="notifStatus">Enable notifications to be alerted on Feb 14! ✨
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>
